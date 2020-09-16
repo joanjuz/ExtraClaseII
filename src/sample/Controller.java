@@ -19,6 +19,7 @@ public class Controller{
         while (contador < messages.size()){
             contador += 1;
             Chat.setText(messages.get(contador));
+            //t
         }
 
 
