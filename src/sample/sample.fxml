@@ -34,10 +34,4 @@
       </Pane>
       <TextField fx:id="Caja" layoutX="14.0" layoutY="468.0" prefHeight="41.0" prefWidth="434.0" />
    </Pane>
-   <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-     <tabs>
-       <Tab text="Untitled Tab 1" />
-       <Tab text="Untitled Tab 2" />
-     </tabs>
-   </TabPane>
 </GridPane>
