@@ -12,15 +12,13 @@ import java.util.ArrayList;
 public class Controller{
     public TextField Caja;
     public TextArea Chat;
-    String messages = "";
 
 
 
-    public void send(ActionEvent event){
-        String message = Caja.getText() + "\n";
-        messages += message;
-        Chat.setText(messages);
-        Caja.setText("");
+
+    public void send_(ActionEvent event){
+        Send_Message.send(Caja,Chat);
+
 
 
 
