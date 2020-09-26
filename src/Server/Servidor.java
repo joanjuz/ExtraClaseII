@@ -10,19 +10,22 @@ import java.util.Map;
 public class Servidor {
     public static void main(String[] args)throws IOException{
         ServerSocket servidor = new ServerSocket(4000);
-        Mapa.users(servidor.getLocalPort(),"");
         while(true){
             Socket s = null;
             try{
                 s = servidor.accept();
                 System.out.println("Se conecto un nuevo cliente..." + s);
 
+                DataInputStream enviar = new DataInputStream(s.getInputStream());
+                int puertoa = enviar.readInt();
+
                 DataInputStream message =new DataInputStream(s.getInputStream());
                 DataOutputStream server = new DataOutputStream(s.getOutputStream());
+                Mapa.puertos.put(s.getPort(),s);
+                System.out.println(puertoa);
 
-                Thread t = new Manage(s,message,server,s.getPort());
+                Thread t = new Manage(s,message,server,s.getPort(),puertoa);
                 t.start();
-                Mapa.users(s.getPort(),message.readUTF());
 
 
 

@@ -1,25 +1,49 @@
 package Mensajes;
 
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Mapa {
-    public static void users(int Port, String Message) {
-        Map<String, java.util.List<String>> user = new HashMap<>();
-        String puerto = Port + "";
+    public static Map<Socket, java.util.List<String>> user = new HashMap<>();
+    public static Map<Integer,Socket> puertos = new HashMap<>();
+    public static Map<Socket,java.util.List<Socket>> between_users = new HashMap();
+    public static ArrayList<Socket> usuarios = new ArrayList<>();
+    public static void users(Socket client1,Socket client2 ,String Message) {
         java.util.List<String> messages = new ArrayList<String>();
-
-        if (user.containsKey(puerto)){
+        if (user.containsKey(client1)){
+            messages = user.get(client1);
             messages.add(Message);
-            user.put(puerto,messages);
+            user.put(client1,messages);
         }else{
             messages.add(Message);
-            user.put(puerto,messages);
+            user.put(client1,messages);
+        }
+    }
+    public static void comunication(Socket client1,Socket client2,String Message){
+        if (between_users.containsKey(client1)){
+            if (between_users.get(client1).contains(client2)){
+                users(client1,client2,Message);
+        }else{
+            java.util.List<Socket> user2 = new ArrayList<>();
+            user2 = between_users.get(client1);
+            user2.add(client2);
+            between_users.put(client1,user2);
+            users(client1,client2,Message);
+        }
+    }else{
+            java.util.List<Socket> user2 = new ArrayList<>();
+            user2.add(client2);
+            between_users.put(client1,user2);
+            users(client1,client2,Message);
         }
 
+    }
+    public static java.util.ArrayList<Map> getMap(){
+        java.util.ArrayList<Map> maps = new ArrayList<>();
+        maps.add(user);
+        maps.add(puertos);
+        maps.add(between_users);
+        return maps;
     }
 
 }
