@@ -17,32 +17,32 @@ public class Client {
 
             Socket s = new Socket(ip,4000);
 
+            System.out.println("puerto: " +s.getLocalPort());
+
             DataOutputStream enviar = new DataOutputStream(s.getOutputStream());
 
             DataInputStream message = new DataInputStream(s.getInputStream());
             DataOutputStream server = new DataOutputStream(s.getOutputStream());
 
-            try{
-                int a = 0;
-                while(a == 0){
-                    int f = scn.nextInt();
-                    a = f;
-                    enviar.writeInt(a);
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            int sport = send.send_A();
+            enviar.writeInt(sport);
 
             System.out.println("Datos procesados");
 
             while(true){
-                String tosend =scn.nextLine();
-                server.writeUTF(tosend);
+                try {
+                    String tosend = scn.nextLine();
+                    server.writeUTF(tosend);
 
-                if(tosend.equals("")){
-                    continue;               }
-                String received = message.readUTF();
-                System.out.println(received);
+                    if (tosend.equals("")) {
+                        continue;
+                    }
+                    String received = message.readUTF();
+                    System.out.println(received);
+                }catch (Exception e){
+                    s.close();
+                    e.printStackTrace();
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
