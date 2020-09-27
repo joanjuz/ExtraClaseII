@@ -6,11 +6,11 @@ import java.util.*;
 public class Mapa {
 
 
-    public static Map<java.util.List<Socket>, java.util.List<String>> user = new HashMap<>();
+    public static Map<java.util.List<Socket>, java.util.List<String>> user = new HashMap<>();//Usuarios y sus chats
 
-    public static Map<Integer,Socket> puertos = new HashMap<>();
+    public static Map<Integer,Socket> puertos = new HashMap<>();//Puertos con Sockets
 
-    public static Map<Socket,java.util.List<Socket>> between_users = new HashMap();
+    public static Map<Socket,java.util.List<Socket>> between_users = new HashMap();//Cadena de comunicacion
 
     public static ArrayList<Socket> usuarios = new ArrayList<>();
 
