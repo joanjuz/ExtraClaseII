@@ -3,6 +3,7 @@ package Principal;
 import Mensajes.Mapa;
 import Mensajes.Send_Message;
 import Mensajes.Sendto;
+import Server.CLIENTE;
 import Server.Client;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -14,7 +15,6 @@ import java.io.IOException;
 public class Controller{
     public TextField Caja;
     public static Stage window;
-    public boolean cerrar;
     public Label PORTGET;
     public Label IPGET;
     public TextArea Chat;
@@ -33,5 +33,8 @@ public class Controller{
     }
     public void setport(ActionEvent event) throws IOException {
         Send_Message.set_port(Main.port_(), (Button) event.getSource(),Chat);
+    }
+    public void update(ActionEvent event){
+        Send_Message.update(Chat);
     }
 }

@@ -47,6 +47,9 @@ public class Send_Message{
 
         }
     }
+    public static void update(TextArea Chat){
+        Chat.setText(Client.Chatbox());
+    }
     public static void set_port(int puerto, Button destino,TextArea Chat) throws IOException {
         if(destino.getText().equals("Añadir")) {
             Sendto.display(puerto);

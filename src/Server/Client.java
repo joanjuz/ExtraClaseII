@@ -25,10 +25,6 @@ public class Client extends Thread {
         try{
             Scanner scn = new Scanner(System.in);
 
-            //InetAddress ip = InetAddress.getByName("localhost");
-
-            //Socket s = new Socket(ip,4000);
-
             System.out.println("puerto: " +s.getLocalPort());
 
             message = new DataInputStream(s.getInputStream());
