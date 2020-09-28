@@ -1,6 +1,7 @@
 package Server;
 
 import Mensajes.Mapa;
+import Mensajes.Send_Message;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -15,33 +16,44 @@ public class Manage extends Thread{
     final Socket s;
     final DataOutputStream server;
     int puerto;
-    int tosend;
-    int enviara;
-    public Manage(Socket s, DataInputStream message, DataOutputStream server,int puerto,int enviara){
+
+    public Manage(Socket s, DataInputStream message, DataOutputStream server,int puerto){
         this.s = s;
         this.message = message;
         this.server = server;
         this.puerto = puerto;
-        this.tosend = tosend;
-        this.enviara = enviara;
+
     }
     @Override
     public void run() {
         String received;
-        String toreturn;
-        while(true){
+        int toreturn = 0;
+        boolean responce;
+        while (true){
             try {
                 received = message.readUTF();
-
-                if (received.equals("")){
-                    continue;
-                }
                 server.writeUTF(received);
-                Mapa.comunication(s,Mapa.puertos.get(enviara),received);
-                System.out.println(Mapa.getMap());
+                try{
+                    int port;
+                    port = Integer.parseInt(received);
+                    responce = true;
 
+                }catch (Exception o){
+                    responce = false;
+                }
+                if (responce){
+                    System.out.println("Es true");
+                    toreturn = Integer.parseInt(received);
+                }else {
+                    if (received.equals("")) {
+                        continue;
+                    }
+                    System.out.println("Enviar a " + toreturn);
+                    Mapa.comunication(s, Mapa.puertos.get(toreturn), received);
+                    System.out.println(Mapa.getMap());
 
-            }catch (IOException e){
+                }
+            }catch (IOException e) {
                 e.printStackTrace();
             }
         }

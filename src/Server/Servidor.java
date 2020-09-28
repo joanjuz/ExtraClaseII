@@ -16,17 +16,12 @@ public class Servidor {
                 s = servidor.accept();
                 System.out.println("Se conecto un nuevo cliente..." + s);
 
-                DataInputStream enviar = new DataInputStream(s.getInputStream());
-                int puertoa = enviar.readInt();
-
                 DataInputStream message =new DataInputStream(s.getInputStream());
                 DataOutputStream server = new DataOutputStream(s.getOutputStream());
                 Mapa.puertos.put(s.getPort(),s);
-                System.out.println(puertoa);
 
-                Thread t = new Manage(s,message,server,s.getPort(),puertoa);
+                Thread t = new Manage(s, message, server, s.getPort());
                 t.start();
-
 
 
 
