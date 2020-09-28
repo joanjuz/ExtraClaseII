@@ -66,15 +66,15 @@ public class Mapa {
         java.util.List<Socket> j = new ArrayList<>();
         if (between_users.containsKey(client1)) {
             if (between_users.get(client1).contains(client2)) {
-                j.add(client1);
                 j.add(client2);
+                j.add(client1);
                 return Mapa.user.get(j);
             } else {
                 java.util.List<Socket> user2 = new ArrayList<>();
                 user2 = between_users.get(client1);
                 user2.add(client2);
-                j.add(client1);
                 j.add(client2);
+                j.add(client1);
                 return Mapa.user.get(j);
             }
         } else if (between_users.containsKey(client2)) {
@@ -91,8 +91,8 @@ public class Mapa {
                 return Mapa.user.get(j);
             }
         } else {
-            j.add(client1);
             j.add(client2);
+            j.add(client1);
             return Mapa.user.get(j);
         }
 

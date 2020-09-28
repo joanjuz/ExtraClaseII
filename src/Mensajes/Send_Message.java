@@ -24,6 +24,7 @@ public class Send_Message{
     public static int client2;
     public static boolean click;
     public static int localclient;
+    public static String backmen;
 
     public static java.util.List<Socket> sockets = new ArrayList<>();
 
@@ -40,8 +41,12 @@ public class Send_Message{
             messages = Caja.getText();
             Client.set_message(messages);
             Caja.setText("");
-            messages = "";
-            Chat.setText(Client.Chatbox());
+            if(Client.Chatbox().equals("")) {
+                Chat.setText(backmen);
+            }else{
+                backmen = Client.Chatbox();
+                Chat.setText(Client.Chatbox());
+            }
 
 
 
@@ -66,7 +71,7 @@ public class Send_Message{
             localclient = puerto;
             System.out.println(client2);
             Client.set_otherport(client2);
-            Chat.setText(Client.Chatbox());
+            Chat.setText(backmen);
 
         }
 }

@@ -1,5 +1,16 @@
 package Principal;
-
+/**
+ * Aplicacion de mensajeria usando Sockets y javaFx
+ * @instituto TECNOLOGICO DE COSTA
+ * @CARRERA INGENIERIA EN COMPUTADORES
+ * @CURSO  ALGORITMO Y ESTRUCTURA DE DATOS
+ * @Profesor JOSE ISAAC RAMIREZ HERRERA
+ * @author <a href="joanjuz@gmail.com">Joan Ugalde Zarate</a>
+ * @version 1.0
+ * Se utilizo Gitub
+ *
+ *
+ */
 import Server.CLIENTE;
 import Server.Client;
 import javafx.application.Application;
@@ -36,7 +47,7 @@ public class Main extends Application {
 
         window = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("Intefaz.fxml"));
-        window.setTitle("Hello World");
+        window.setTitle("Mensajeria");
         window.setScene(new Scene(root, 780, 540));
         window.show();
             }
