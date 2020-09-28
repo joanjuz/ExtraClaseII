@@ -6,11 +6,16 @@ import Server.Manage;
 import Server.Servidor;
 import Server.send;
 import com.sun.javafx.charts.Legend;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Send_Message{
 
@@ -20,7 +25,11 @@ public class Send_Message{
     public static boolean click;
     public static int localclient;
 
-    public static void send(TextField Caja, TextArea Chat) throws IOException {
+    public static java.util.List<Socket> sockets = new ArrayList<>();
+
+
+
+    public static void send(TextField Caja, TextArea Chat) throws IOException, ClassNotFoundException {
         if(client2 == 0) {
             String message = "No has seleccionado un destinatario" + "\n";
             Chat.setText(message);
@@ -32,9 +41,13 @@ public class Send_Message{
             Client.set_message(messages);
             Caja.setText("");
             messages = "";
+            Chat.setText(Client.Chatbox());
+
+
+
         }
     }
-    public static void set_port(int puerto, Button destino) throws IOException {
+    public static void set_port(int puerto, Button destino,TextArea Chat) throws IOException {
         if(destino.getText().equals("Añadir")) {
             Sendto.display(puerto);
             String e = Sendto.answer;
@@ -42,6 +55,7 @@ public class Send_Message{
             localclient = puerto;
             destino.setText(e);
             Client.set_otherport(client2);
+            Chat.setText("");
 
         }else{
             send.puerto = Integer.parseInt(destino.getText());
@@ -49,6 +63,7 @@ public class Send_Message{
             localclient = puerto;
             System.out.println(client2);
             Client.set_otherport(client2);
+            Chat.setText(Client.Chatbox());
 
         }
 }

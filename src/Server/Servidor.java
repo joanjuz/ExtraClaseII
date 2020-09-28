@@ -26,6 +26,7 @@ public class Servidor {
 
 
             }catch (Exception e){
+                assert s != null;
                 s.close();
                 e.printStackTrace();
 

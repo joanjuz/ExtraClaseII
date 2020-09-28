@@ -1,13 +1,11 @@
 package Principal;
 
+import Mensajes.Mapa;
 import Mensajes.Send_Message;
 import Mensajes.Sendto;
 import Server.Client;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,12 +13,13 @@ import java.io.IOException;
 
 public class Controller{
     public TextField Caja;
-    public TextArea Chat;
     public static Stage window;
     public boolean cerrar;
     public Label PORTGET;
     public Label IPGET;
-    public void send_(ActionEvent event) throws IOException {
+    public TextArea Chat;
+
+    public void send_(ActionEvent event) throws IOException, ClassNotFoundException {
         Send_Message.send(Caja,Chat);
     }
     public void close(ActionEvent event){
@@ -33,6 +32,6 @@ public class Controller{
         IPGET.setText(ip4);
     }
     public void setport(ActionEvent event) throws IOException {
-        Send_Message.set_port(Main.port_(), (Button) event.getSource());
+        Send_Message.set_port(Main.port_(), (Button) event.getSource(),Chat);
     }
 }
