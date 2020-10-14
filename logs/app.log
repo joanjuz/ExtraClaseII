@@ -1,2 +1,13 @@
-2020-10-14 14:24:57,778 DEBUG Mensajes.Send_Message [JavaFX Application Thread] Enviando mensaje...
-2020-10-14 14:24:57,780 ERROR Mensajes.Send_Message [JavaFX Application Thread] No se ha seleccionado un destinatario
+
+2020-10-14 14:48:35,670 ERROR Principal.Main [JavaFX Application Thread] No se ha podido conectar con el servidor
+java.lang.IllegalAccessException: No se ha podido conectar con el servidor
+	at Principal.Main.start(Main.java:48)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:846)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:832)

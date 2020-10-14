@@ -34,25 +34,29 @@ public class Send_Message{
 
 
     public static void send(TextField Caja, TextArea Chat) throws IOException, ClassNotFoundException {
-        log.debug("Enviando mensaje...");
-        if(client2 == 0) {
-            String message = "No has seleccionado un destinatario" + "\n";
-            Chat.setText(message);
-            Caja.setText("");
-            log.error("No se ha seleccionado un destinatario");
-        }else if(localclient==0){
-            log.debug("Registrando cliente...");
-            localclient = Main.port_();
-        }else{
-            messages = Caja.getText();
-            Client.set_message(messages);
-            Caja.setText("");
-            if(Client.Chatbox().equals("")) {
-                Chat.setText(backmen);
-            }else{
-                backmen = Client.Chatbox();
-                Chat.setText(Client.Chatbox());
+        try {
+            log.debug("Enviando mensaje...");
+            if (client2 == 0) {
+                String message = "No has seleccionado un destinatario" + "\n";
+                Chat.setText(message);
+                Caja.setText("");
+                throw new IllegalArgumentException("No has determinado el destinatario");
+            } else if (localclient == 0) {
+                log.debug("Registrando cliente...");
+                localclient = Main.port_();
+            } else {
+                messages = Caja.getText();
+                Client.set_message(messages);
+                Caja.setText("");
+                if (Client.Chatbox().equals("")) {
+                    Chat.setText(backmen);
+                } else {
+                    backmen = Client.Chatbox();
+                    Chat.setText(Client.Chatbox());
+                }
             }
+        }catch (IllegalArgumentException e){
+            log.error(e.getMessage(),e);
         }
     }
     public static void update(TextArea Chat){
