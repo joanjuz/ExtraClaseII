@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class Send_Message{
+    private static Logger log = LoggerFactory.getLogger(Send_Message.class);
 
     public static String messages = "";
     public static int puerto;
@@ -31,11 +34,14 @@ public class Send_Message{
 
 
     public static void send(TextField Caja, TextArea Chat) throws IOException, ClassNotFoundException {
+        log.debug("Enviando mensaje...");
         if(client2 == 0) {
             String message = "No has seleccionado un destinatario" + "\n";
             Chat.setText(message);
             Caja.setText("");
+            log.error("No se ha seleccionado un destinatario");
         }else if(localclient==0){
+            log.debug("Registrando cliente...");
             localclient = Main.port_();
         }else{
             messages = Caja.getText();
