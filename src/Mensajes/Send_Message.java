@@ -47,9 +47,6 @@ public class Send_Message{
                 backmen = Client.Chatbox();
                 Chat.setText(Client.Chatbox());
             }
-
-
-
         }
     }
     public static void update(TextArea Chat){
