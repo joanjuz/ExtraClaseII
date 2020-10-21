@@ -37,6 +37,7 @@ public class Send_Message{
         try {
             log.debug("Enviando mensaje...");
             if (client2 == 0) {
+                log.error("No se ha seleccionado un destinatario");
                 String message = "No has seleccionado un destinatario" + "\n";
                 Chat.setText(message);
                 Caja.setText("");
@@ -46,8 +47,12 @@ public class Send_Message{
                 localclient = Main.port_();
             } else {
                 messages = Caja.getText();
-                Client.set_message(messages);
-                Caja.setText("");
+                try {
+                    Client.set_message(messages);
+                    Caja.setText("");
+                }catch (Exception e){
+                    log.error(e.getMessage(),e);
+                }
                 if (Client.Chatbox().equals("")) {
                     Chat.setText(backmen);
                 } else {
@@ -60,7 +65,11 @@ public class Send_Message{
         }
     }
     public static void update(TextArea Chat){
-        Chat.setText(Client.Chatbox());
+        if (Client.Chatbox()==null){
+            log.info("No hay mensages registradors");
+        }else {
+            Chat.setText(Client.Chatbox());
+        }
     }
     public static void set_port(int puerto, Button destino,TextArea Chat) throws IOException {
         if(destino.getText().equals("Añadir")) {

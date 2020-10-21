@@ -1,16 +1,5 @@
 package Principal;
-/**
- * Aplicacion de mensajeria usando Sockets y javaFx
- * @instituto TECNOLOGICO DE COSTA
- * @CARRERA INGENIERIA EN COMPUTADORES
- * @CURSO  ALGORITMO Y ESTRUCTURA DE DATOS
- * @Profesor JOSE ISAAC RAMIREZ HERRERA
- * @author <a href="joanjuz@gmail.com">Joan Ugalde Zarate</a>
- * @version 1.0
- * Se utilizo Gitub
- *
- *
- */
+
 import Mensajes.Send_Message;
 import Server.Client;
 import javafx.application.Application;
