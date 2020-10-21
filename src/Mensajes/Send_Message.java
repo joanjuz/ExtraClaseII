@@ -73,13 +73,17 @@ public class Send_Message{
     }
     public static void set_port(int puerto, Button destino,TextArea Chat) throws IOException {
         if(destino.getText().equals("Añadir")) {
-            Sendto.display(puerto);
-            String e = Sendto.answer;
-            client2 = Integer.parseInt(Sendto.answer);
-            localclient = puerto;
-            destino.setText(e);
-            Client.set_otherport(client2);
-            Chat.setText("");
+            try {
+                Sendto.display(puerto);
+                String e = Sendto.answer;
+                client2 = Integer.parseInt(Sendto.answer);
+                localclient = puerto;
+                destino.setText(e);
+                Client.set_otherport(client2);
+                Chat.setText("");
+            }catch (Exception e){
+                log.error(e.getMessage(),e);
+            }
 
         }else{
             send.puerto = Integer.parseInt(destino.getText());
